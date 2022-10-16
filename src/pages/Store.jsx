@@ -3,6 +3,9 @@ import React, {useState ,useEffect} from 'react'
 import { getStoresData } from '../api/Store'
 import styled from 'styled-components'
 import fnac from '../img/fnac.jpg';
+import { useNavigate } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom'
+import Books from './Books';
 
 const Container = styled.div`
     display: grid;
@@ -11,14 +14,13 @@ const Container = styled.div`
     padding: 20px;
     justify-content: space-between;
 `
-const Button = styled.button`
-cursor: pointer;`
 
 const Imgstore = styled.img.attrs({
     src:`${fnac}`
 })
 //style imgStore
 `
+cursor: pointer;
 width: 100%;
 `
 const ListStore = styled.div`
@@ -38,6 +40,7 @@ font-size: small;
 text-align: center;
 flex-direction: column;
 `
+
 // Store page
 const Store = () => {  
     const [store, setSelectStore] = useState([]);
@@ -47,14 +50,16 @@ const Store = () => {
             setSelectStore(data);
         })
     }, []);
-    
+   
+    const navigate = useNavigate();
+  
   return (
     <Container>
         {store.map(function(e){
             return( <ListStore>
-                <Button>
-                <Imgstore></Imgstore>
-                </Button>
+            <button onClick={() => navigate('books')}>
+            <Imgstore></Imgstore>
+            </button>
                 <Info>
                 <NameStore>{e.name}</NameStore>
                 <DataStore>{e.address}</DataStore>
@@ -63,10 +68,8 @@ const Store = () => {
             </ListStore>
             )
         })}
-    </Container>
-     
+    </Container> 
   )
-
 }
 
 export default Store

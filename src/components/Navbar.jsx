@@ -1,20 +1,20 @@
 // import
 import React from 'react'
 import styled from 'styled-components'
-import myImage from '../../src/logo.png';
+import logoImg from '../img/logo.png';
 
 const Container = styled.div`
 background-color: #FFC770;
-height: 60px;
+height: 50px;
 `
 // Logo book store
 const Logo = styled.img.attrs({
-    src:`${myImage}`
+    src:`${logoImg}`
 })
 //style logo
 `
-width: 100px;
-margin: 9px;
+width: 70px;
+margin: 11px;
 `
 
 const Navbar = () => {

@@ -3,9 +3,7 @@ import React, {useState ,useEffect} from 'react'
 import { getStoresData } from '../api/Store'
 import styled from 'styled-components'
 import fnac from '../img/fnac.jpg';
-import { useNavigate } from 'react-router-dom';
-import { Routes, Route } from 'react-router-dom'
-import Books from './Books';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 const Container = styled.div`
     display: grid;
@@ -52,14 +50,18 @@ const Store = () => {
     }, []);
    
     const navigate = useNavigate();
-  
+  console.log('navigate', navigate)
   return (
     <Container>
         {store.map(function(e){
             return( <ListStore>
-            <button onClick={() => navigate('books')}>
+                <NavLink to="/Books">
+            <button onClick={() => 
+                
+                navigate('books')}>
             <Imgstore></Imgstore>
             </button>
+            </NavLink>
                 <Info>
                 <NameStore>{e.name}</NameStore>
                 <DataStore>{e.address}</DataStore>

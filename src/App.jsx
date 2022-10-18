@@ -3,7 +3,7 @@ import React from 'react'
 import Home from './pages/Home'
 
 // main app
-const App = () => {
+function App(){
   return (
     <Home/>
   )

@@ -1,38 +1,50 @@
-import React, {useState} from 'react'
+import React, {useState, useRef, useEffect} from 'react'
 import ReactDOM  from 'react-dom'
 import styled from 'styled-components';
 
-const FinalizeOrder = () => {
-    const [firstName, setFirstName] = useState('');
+export default function FinalizeOrder() {
+    const [contactInfo, setContactInfo] = useState({
+        firstName: "",
+        lastName: "",
+        address: "",
+        phonenumber: "",
+      });
+    const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('');
     const [address, setAddress] = useState('');
     const [phoneNum, setPhoneNum] = useState('');
-    const [inputFields, setInputFields] = useState([
-        { firstName: '', lastName: '', address: '', phoneNum: ''  }])
-        
-    //update state of first name
-    const handleFirstNameChange =(e)=>{
-        debugger
-        setFirstName(e.target.value);
+    
+    const handleFirstNameChange = (event) => {
+        setFirstName(event.target.value)
+    };
+
+    const handleLastNameChange = (event) =>{
+        setLastName(event.target.value)
+    };
+
+    const handleaddressChange = (event) =>{
+        setAddress(event.target.value)
     }
 
-    //update state of last name
-    const handleLastNameChange =(e)=>{
-        setLastName(e.target.value);
+    const handlePhoneNumChange = (event) =>{
+        setPhoneNum(event.target.value)
     }
+    
+     let firstN = useRef()
+     let lastN = useRef();
+     let add = useRef();
+     let phone = useRef();
 
-    //update state of address
-    const handleAddressChange =(e)=>{
-        setAddress(e.target.value);
-    }
-
-    //update state of phone number
-    const handlePhoneNumChange =(e)=>{
-        setPhoneNum(e.target.value);
-    }
-
+    // useEffect(() => {
+  
+    //   }, []);
     const handelSubmit=(e)=>{
-        alert(firstName)
+        // setFirstName(firstN.current.value)
+        // console.log(firstName)
+
+        //alert(firstName)
+        debugger
+        //setContactInfo({ ...contactInfo, [e.target.name]: e.target.value })
     }
 
     const Container = styled.div`
@@ -59,46 +71,23 @@ const FinalizeOrder = () => {
     border:2px solid black;
     margin: 3px;`
 
+
+
   return (
     <Container>
-        <Form onSubmit={(e) =>{handelSubmit(e)}}>
+        <Form onSubmit={(e) =>{handelSubmit(e)}} >
         <Title>Finalize Order</Title>
-        {/* {inputFields.map((input, index) => {
-          return (
-            <div key={index}>
-              <input
-                name='first'
-                placeholder='first name'
-                value={input.firstName}
-                onChange={event => handleFormChange(index, event)}
-              />
-              <input
-                name='name'
-                placeholder='last name'
-                value={input.lastName}
-                onChange={event => handleFormChange(index, event)}
-              />
-            </div>
-          )
-        })} */}
-        <Input type="name" id="firstname" value={firstName} placeholder="first name" 
-        onChange={(e) => handleFirstNameChange(e)}></Input>
 
-        <Input type="text"  id="lastname" value={lastName} placeholder="last name" onChange={(e) =>{
-            handleLastNameChange(e)
-        }}></Input><br/>
+        <Input type="name" ref={firstN} placeholder="first name" onChange={handleFirstNameChange} value={firstName} ></Input>
+
+        <Input type="text"  ref={lastN} placeholder="last name" onChange={handleLastNameChange} value={lastName}></Input><br/>
   
-        <Input type="text"  value={address} placeholder="address" onChange={(e) =>{
-            handleAddressChange(e)
-        }}></Input><br/>
+        <Input type="text" ref={add} value={address} placeholder="address" onChange={handleaddressChange} value={address}></Input><br/>
 
-        <Input type="text" value={phoneNum} placeholder="phone number" onChange={(e) =>{
-            handlePhoneNumChange(e)
-        }}></Input><br/>
+        <Input type="text" ref={phone} placeholder="phone number" onChange={handlePhoneNumChange} value={phoneNum}></Input><br/>
+        
         <Input type="submit" value="Buy"/>
         </Form>
     </Container>
   )
 }
-
-export default FinalizeOrder

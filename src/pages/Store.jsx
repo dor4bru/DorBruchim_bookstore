@@ -3,7 +3,9 @@ import React, {useState ,useEffect} from 'react'
 import { getStoresData } from '../api/Store'
 import styled from 'styled-components'
 import fnac from '../img/fnac.jpg';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+// import { Routes, Route, BrowserRouter } from 'react-router-dom'
+// import Product from './Product';
 
 const Container = styled.div`
     display: grid;
@@ -38,9 +40,10 @@ font-size: small;
 text-align: center;
 flex-direction: column;
 `
-
+const Button = styled.button`
+`
 // Store page
-const Store = () => {  
+function Store(props) {  
     const [store, setSelectStore] = useState([]);
     useEffect(() =>{
         getStoresData()
@@ -48,19 +51,17 @@ const Store = () => {
             setSelectStore(data);
         })
     }, []);
-   
-    const navigate = useNavigate();
-  console.log('navigate', navigate)
+    // const navigate = useNavigate();
+
   return (
     <Container>
         {store.map(function(e){
             return( <ListStore>
-                <NavLink to="/Books">
-            <button onClick={() => 
-                
-                navigate('books')}>
-            <Imgstore></Imgstore>
-            </button>
+            <NavLink to="/Books">
+                <Button onClick={() => 
+                props.hideStorePage()}>
+                <Imgstore></Imgstore>
+                </Button>
             </NavLink>
                 <Info>
                 <NameStore>{e.name}</NameStore>

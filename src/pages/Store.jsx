@@ -46,45 +46,49 @@ const Button = styled.button`
 // Store page
 function Store(props) {  
     const [store, setSelectStore] = useState([]);
-    const [dataStore, setdataStoreInfo] = useState({
-        Id:"",
-        name:"",
-        address:"",
-        city:"",
-        lang:"",
-        language:{},
-        img:""
-    });
+    let [dataStore, setdataStoreInfo] = useState([]);
+    let tempData={};
+        
+
     useEffect(() =>{
         getStoresData()
         .then((data) =>{
+            data.map(function(e){
+                tempData.id = e.id;
+                tempData.name = e.name;
+                tempData.address = e.address;
+                tempData.city = e.city;
+                tempData.lang = e.lang;
+                tempData.language= e.language;
+                setdataStoreInfo(dataStore => [...dataStore, tempData])
+            })
             setSelectStore(data);
         })
-        const imgData = getImageStoreData()
-        debugger
-        // .then((imgData) =>{
-        //     store.map(function(e){
-        //         debugger
-        //         setdataStoreInfo({ ...dataStore, [e.name]: e.target.value })
-        //     })
-        // })
+        getImageStoreData()
+         .then((imgData) =>{
+             console.log(imgData)
+         })
     }, []);
+
+  console.log(dataStore)
 
     // TODO
     function getImgByIdStore(){
 
     }
     function createStore(e){
-        console.log(e) 
-            props.hideStorePage()
+        debugger
+        let idStore = e.target.id
+        props.getIdStore(e.target.id)
+        props.hideStorePage()
     }
   return (
     <Container>
         {store.map(function(e){
-            return( <ListStore>
+            return( <ListStore key={e.id}>
             <NavLink to="/Books">
                 <Button onClick={createStore}>
-                <Imgstore></Imgstore>
+                <Imgstore key={e.id} id={e.id}></Imgstore>
                 </Button>
             </NavLink>
                 <Info>

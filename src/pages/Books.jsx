@@ -22,7 +22,7 @@ const ImgBooks = styled.img.attrs({
 //style imgbook
 `
 cursor: pointer;
-width: 40%;
+width: 60%;
 `
 const ListBook = styled.div`
 flex: 1;
@@ -34,44 +34,76 @@ const Info = styled.div`
 const NameBook = styled.h1`
 font-size: medium;
 text-align: center;
-flex-direction: column;`
+flex-direction: column;
+grid-template-columns: 1fr 1fr 1fr;
+grid-column-gap: 20px;`
 
 const DataBook = styled.h2`
 font-size: small;
 text-align: center;
 flex-direction: column;
+mragin: 3px
 `
-const Button = styled.button``
+const Button = styled.button`
+width:40%,
+height:30%`
 
 function Books (props) {
-
     const [book, setSelectBook] = useState([]);
+    const [dataBook, setDataBook] = useState({
+        id:'',
+        author:'',
+        store_id:'',
+        description:'',
+        created_at:'',
+        language:'',
+        name:'',
+        paperback:'',
+        price:'',
+        publisher:'',
+        ratings:'',
+        stars:'',
+        type:'',
+        updated_at:'',
+        isActive:false,
+        type_book:{}
+
+    })
     useEffect(() =>{
         getBookData()
         .then((data) =>{
+            data.map(function(books){
+                if(books.store_id == props.storeIdSelect){
+                    debugger
+                }
+            })
+            
             setSelectBook(data);
             console.log(data)
         })
     }, []);
    
-    // const navigate = useNavigate();
+    function selectBook(e){
+        debugger
+        props.hideBookPage()
+    }
   return (
     <Container>
     {book.map(function(e){
         return( <ListBook>
                    <NavLink to="/Product">
-                <Button onClick={() => 
-                props.hideBookPage()}>
+                <Button onClick={(selectBook)}>
             <ImgBooks></ImgBooks>
-            </Button>
-            </NavLink>
             <Info>
             <NameBook>{e.name}</NameBook>
             <DataBook>{e.author}</DataBook>
-            <FontAwesomeIcon icon={faShoppingCart}></FontAwesomeIcon>
-            <DataBook>{e.price}</DataBook>
+            <DataBook>{e.price}
             <FontAwesomeIcon icon={faEuro}></FontAwesomeIcon>
+            </DataBook> 
+            <FontAwesomeIcon icon={faShoppingCart} size={'lg'} style={{cursor: "pointer", display: "table-column"}}></FontAwesomeIcon>  
            </Info>
+            </Button>
+            </NavLink>
         </ListBook>
         )
     })}

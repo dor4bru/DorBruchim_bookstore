@@ -13,24 +13,42 @@ const Container = styled.div``
 
 // Home page
 function Home() {
-  let [bookPage, setBookPage] = useState(true)  
-  let [storePage, setStorePage] = useState(true) 
+  let [bookPage, setBookPage] = useState(true);
+  let [storePage, setStorePage] = useState(true);
+  let [storeIdSelect, setSelectIdStore] = useState('');
   // let [product, setProduct] = useState(true)  
 
-  const hideStorePage = () =>{
+  const hideStorePage = () => {
     setBookPage(false)
   }
 
-  const hideBookPage = () =>{
+  const hideBookPage = () => {
     setStorePage(false)
   }
+
+  function getIdStore(id) {
+    debugger
+    setSelectIdStore(id)
+    console.log(storeIdSelect)
+  }
+  const childStore = { 
+    hideStorePage, 
+    getIdStore,
+ };
+ const childBook = {
+  hideBookPage,
+  storeIdSelect
+ }
+
   return (
     <Container>
         <Navbar/>
         <Routes>
-          <Route path="/Books" element={storePage && <Books hideBookPage={hideBookPage}/>}></Route>
+          <Route path="/Books" element={storePage && <Books {...childBook} />}></Route>
         </Routes>
-        {bookPage && <Store hideStorePage={hideStorePage}/>}
+        {/* {bookPage && <Store hideStorePage={hideStorePage, getIdStore}/>} */}
+        {bookPage && <Store {...childStore}/>}
+        
         <Routes>
           <Route path="/Product" element={<Product/>}></Route>
         </Routes>

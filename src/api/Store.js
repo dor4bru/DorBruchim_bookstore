@@ -9,3 +9,21 @@ export const getStoresData = async () => {
         console.log(error)
     }
 }
+
+export const getImageStoreData = async () => {
+    try{
+        let data = require('../data/StoreImageMap.json');
+        console.log(data)
+        return data
+    }catch(error){
+        console.log(error)
+    }
+}
+
+
+// // fnac_store_books.json
+// {
+//     "bok-123-123": "http://image from internte/"
+//      "http://"
+// }
+// "defult-book":

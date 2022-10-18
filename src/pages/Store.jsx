@@ -1,6 +1,6 @@
 // import
 import React, {useState ,useEffect} from 'react'
-import { getStoresData } from '../api/Store'
+import { getStoresData, getImageStoreData} from '../api/Store'
 import styled from 'styled-components'
 import fnac from '../img/fnac.jpg';
 import { NavLink } from 'react-router-dom';
@@ -16,6 +16,7 @@ const Container = styled.div`
 `
 
 const Imgstore = styled.img.attrs({
+    // src:`${getImgByIdStore()}`
     src:`${fnac}`
 })
 //style imgStore
@@ -45,21 +46,44 @@ const Button = styled.button`
 // Store page
 function Store(props) {  
     const [store, setSelectStore] = useState([]);
+    const [dataStore, setdataStoreInfo] = useState({
+        Id:"",
+        name:"",
+        address:"",
+        city:"",
+        lang:"",
+        language:{},
+        img:""
+    });
     useEffect(() =>{
         getStoresData()
         .then((data) =>{
             setSelectStore(data);
         })
+        const imgData = getImageStoreData()
+        debugger
+        // .then((imgData) =>{
+        //     store.map(function(e){
+        //         debugger
+        //         setdataStoreInfo({ ...dataStore, [e.name]: e.target.value })
+        //     })
+        // })
     }, []);
-    // const navigate = useNavigate();
 
+    // TODO
+    function getImgByIdStore(){
+
+    }
+    function createStore(e){
+        console.log(e) 
+            props.hideStorePage()
+    }
   return (
     <Container>
         {store.map(function(e){
             return( <ListStore>
             <NavLink to="/Books">
-                <Button onClick={() => 
-                props.hideStorePage()}>
+                <Button onClick={createStore}>
                 <Imgstore></Imgstore>
                 </Button>
             </NavLink>

@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import Store from '../pages/Store'
 import { Routes, Route } from 'react-router-dom'
 import Books from './Books'
-// import FinalizeOrder from './FinalizeOrder'
+import FinalizeOrder from './FinalizeOrder'
 // import Cart from './Cart'
 import Product from './Product'
 
@@ -35,7 +35,7 @@ function Home() {
           <Route path="/Product" element={<Product/>}></Route>
         </Routes>
         {/* <Books/> */}
-        {/* <FinalizeOrder/> */}
+        <FinalizeOrder/>
         {/* <Cart></Cart> */}
     </Container>  
   )

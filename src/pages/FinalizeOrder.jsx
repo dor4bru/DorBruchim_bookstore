@@ -1,11 +1,17 @@
-import React, {useEffect} from 'react'
+import React, {useCallback, useEffect, useState} from 'react'
 import { NavLink, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import axios from 'axios';
+import { postOrder } from '../api/Order'
+import Navbar from '../components/Navbar';
 
 export default function FinalizeOrder(props) {
-   // const navigate = useNavigate();
+    const navigate = useNavigate();
     const booksData = props.data;
+    const [body, setBody] = useState();
+    const [finalOrder, setFinalOrder] = useState([])
+    const [doPost, setDoPost] = useState(false)
+
     const order = {
         firstName: "",
         lastName: "",       
@@ -16,69 +22,42 @@ export default function FinalizeOrder(props) {
     let lastN;
     let add;
     let phone;
+    let resapi;
 
-    const handelSubmit= () => {
-        buildJsonForPostApi()
-    }
+           useEffect(() =>{
+               if(typeof body != undefined){
+                setDoPost(true)
+               }
+               if(doPost){
+                       const getBookDataAsync = async () => {
+                const idOrder = (await postOrder(body));
+                const finalOrder = ({
+                    firstName: body.firstName,
+                    lastName: body.lastName,
+                    dataIdOrder: idOrder
+                })
+                props.getOrderId(finalOrder)
+                navigate('/Thanks');
+            };
+            try{
+                getBookDataAsync(); 
+            }catch(error){
+                console.log(error)
+            }
+               }
+        }, [body]);
 
-    function buildJsonForPostApi(){
-        console.log('got resp 0 props: ' + JSON.stringify(props));
+    const handelSubmit=(e) => {
+        e.preventDefault();
         const totalAmount = booksData.map(b => b.price).reduce((p1, p2) => p1 + p2, 0);
-        console.log('got resp amount: ' + totalAmount);
-        
-
-        axios.post(`https://logical-calf-89.hasura.app/api/rest/orders`,{ address: order.address,
-        amount: totalAmount,
-        books: booksData,
-        firstName: order.firstName,
-        lastName: order.lastName,
-        phoneNumber: order.phonenumber
-     })
-        .then(res => {
-          console.log(res);
-          console.log(res.data);
-        })
-        //     // POST request using axios inside useEffect React hook
-        //     const article = { title: JSON.stringify({ address: order.address,
-        //                         amount: totalAmount,
-        //                         books: booksData,
-        //                         firstName: order.firstName,
-        //                         lastName: order.lastName,
-        //                         phoneNumber: order.phonenumber
-        //                     }) };
-        //     axios.post('https://logical-calf-89.hasura.app/api/rest/orders',{ address: order.address,
-        //     amount: totalAmount,
-        //     books: booksData,
-        //     firstName: order.firstName,
-        //     lastName: order.lastName,
-        //     phoneNumber: order.phonenumber
-        // }).then(response =>  console.log(response.json()))
-
-        // // console.log('posting: ' + requestOptions);
-        // // axios.post('https://logical-calf-89.hasura.app/api/rest/orders', requestOptions)
-        // .then(response =>  response.json())
-        // .then(body => {
-        //     console.log('post body: ' + JSON.stringify(body));
-        //     navigate('/Thanks')
-        //('https://logical-calf-89.hasura.app/api/rest/orders', requestOptions).then((response) => {
-        //     console.log('got resp');
-        //     return response.json();
-        // }).then(body => {
-        //     console.log('post body: ' + JSON.stringify(body));
-        //     navigate('/Thanks');
-        // }).catch(err => {
-        //     console.log('error occurred due to post: ' + JSON.stringify(err));
-        //     console.log('error occurred due to post: ' + err.code);
-        //     console.log('error occurred due to post: ' + err.message);
-        //     console.log('error occurred due to post: ' + err.type);
-        // }).finally(() => {
-        //     console.log('in finally');
-        // });
-        
-        
-        
-        
-    
+        resapi= { address: order.address,
+            amount: totalAmount,
+            books: props.data,
+            firstName: order.firstName,
+            lastName: order.lastName,
+            phoneNumber: order.phonenumber
+    }
+    setBody(resapi)
     }
 
     const Container = styled.div`
@@ -107,9 +86,10 @@ export default function FinalizeOrder(props) {
 
   return (
     <Container>
-        <Form onSubmit={(e) =>{handelSubmit()}} >
+        <Navbar></Navbar>
+        <Form onSubmit={(e) =>{handelSubmit(e)}} >
             <Title>Finalize Order</Title>
-            <Input type="text" required value={firstN} placeholder="first name" onChange={(e) => order.firstName = e.target.value} ></Input>
+            <Input type="text" required value={firstN} placeholder="first name" onChange={(e) => {order.firstName = e.target.value}} ></Input>
             <Input type="text"  required value={lastN} placeholder="last name" onChange={(e) => order.lastName = e.target.value} ></Input><br/>
             <Input type="text" required value={add} placeholder="address" onChange={(e) => order.address = e.target.value}></Input><br/>
             <Input type="text" required value={phone} placeholder="phone number" onChange={(e) => order.phonenumber = e.target.value}></Input><br/>

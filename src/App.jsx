@@ -14,11 +14,13 @@ function App(){
   const [idStoreSelect, setIdStoreSelect] = useState('');
   const [idBookSelect, setIdBookSelect] = useState('');
   const [bookDataSelectToBuy, setBookDataSelectToBuy] = useState([])
+  const [orderId, setOrderId] = useState();
 
   useEffect(() => {
     localStorage.setItem('books', JSON.stringify(bookDataSelectToBuy));
   
   }, [bookDataSelectToBuy]);
+
   return (
     <Routes>
       <Route path="/" element={<Home data ={idStoreSelect} updateIdStore={setIdStoreSelect}/>}></Route>
@@ -31,8 +33,9 @@ function App(){
                                                cartBookData={bookDataSelectToBuy}
                                                getBookById={setBookDataSelectToBuy}/>}></Route>
       <Route path="/Cart" element={<Cart data={bookDataSelectToBuy}/>}></Route>
-      <Route path="/FinalizeOrder" element={<FinalizeOrder data={bookDataSelectToBuy}/>}></Route>
-      <Route path="/Thanks" element={<Thanks/>}></Route>
+      <Route path="/FinalizeOrder" element={<FinalizeOrder data={bookDataSelectToBuy}
+                                               getOrderId={setOrderId}/>}></Route>
+      <Route path="/Thanks" element={<Thanks data={orderId}/>}></Route>
     </Routes>
   )
 }

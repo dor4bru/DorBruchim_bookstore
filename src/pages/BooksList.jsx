@@ -5,6 +5,7 @@ import {FontAwesomeIcon, } from '@fortawesome/react-fontawesome'
 import {faShoppingCart,} from "@fortawesome/free-solid-svg-icons"
 import { getBooksData } from '../api/Books'
 import Book from '../components/Book';
+import Navbar from '../components/Navbar';
 
 
 const Container = styled.div``
@@ -37,6 +38,7 @@ function BooksList(props) {
 
     return (
         <Container>
+            <Navbar></Navbar>
             <NavLink to="/Cart">
                 <FontAwesomeIcon icon={faShoppingCart} style={{color: "black"}}></FontAwesomeIcon>
             </NavLink>

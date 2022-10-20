@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faTrashCan, faEuro} from "@fortawesome/free-solid-svg-icons"
+import Navbar from '../components/Navbar';
 
 const Container = styled.div``
 const Button = styled.button``
@@ -43,6 +44,7 @@ function Cart (props) {
 
   return (
       <Container>
+        <Navbar></Navbar>
         <Table id="cart">
           <tbody>
             <Th>Name</Th>

@@ -7,6 +7,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faStar, faStarHalfStroke, faEuro, faShoppingCart} from "@fortawesome/free-solid-svg-icons"
 import { BiStar, BsStarHalf, AiFillStar} from 'react-icons/';
 import { VscStarEmpty,VscStarFull, VscStarHalf } from "react-icons/vsc";
+import Navbar from '../components/Navbar';
 // import { BiStar } from "@react-icons/all-files/fa/BigStar";
 
 const Container = styled.div`
@@ -70,6 +71,7 @@ function Product(props) {
 
   return (
     <Container>
+        <Navbar></Navbar>
         <NavLink to="/Cart">
         <FontAwesomeIcon icon={faShoppingCart}  style={{color: "black"}}></FontAwesomeIcon>
         </NavLink>

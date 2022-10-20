@@ -1,5 +1,6 @@
 // import
 import React from 'react'
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components'
 import logoImg from '../img/logo.png';
 
@@ -20,7 +21,9 @@ margin: 11px;
 const Navbar = () => {
   return (
     <Container>
+      <NavLink to='/'>
         <Logo/>
+      </NavLink>
     </Container>
   )
 }

@@ -9,8 +9,8 @@ const HomePage = styled.button``
 const Title = styled.div`` 
 const Order = styled.div``
 const GoodBye = styled.div``
+
 const Thanks = (props) => {
-  debugger
   return (
     <Container>
       <Navbar/>

@@ -10,7 +10,7 @@ import Navbar from '../components/Navbar';
 
 const Container = styled.div``
 
-function BooksList(props) {
+function BooksList({setBookById, setSelectedBookId, cartBookData, addBookToCart, data}) {
     let [booksData, setBooksData] = useState([]);
 
     useEffect(() =>{
@@ -20,20 +20,22 @@ function BooksList(props) {
         try{
             getBooksDataAsync(); 
         }catch(error){
-            console.log(error)
+            console.log(error);
         }
     }, []);
 
     function setIdBook(id){
-        props.updateIdBook(id)
-        
+        useEffect(() => {
+            setSelectedBookId(id);
+        }, []);
     }
 
-    function getBookDataById(book){
-        let tempBook = props.cartBookData;
-        props.getBookById(tempBook => [...tempBook, book]);
-        localStorage.setItem('book', JSON.stringify(tempBook));
-    }
+    // function getBookDataById(book){
+    //     debugger
+    //     let tempBook = cartBookData;
+    //     setBookById(tempBook => [...tempBook, book]);
+    //     //localStorage.setItem('book', JSON.stringify(tempBook));
+    // }
 
     return (
         <Container>
@@ -43,8 +45,8 @@ function BooksList(props) {
             </NavLink>
             <Container>
                 {booksData.map(book => {
-                if(book.store_id === props.data){
-                     return <Book {...{ ...book,...{setIdBook}, ...{getBookDataById}} } />
+                if(book.store_id === data){
+                     return <Book {...{ ...book, addBookToCart, setIdBook, key: book.id} } />
                 }
                 })}
             </Container>

@@ -20,9 +20,11 @@ const Title = styled.h3``
 const Description = styled.p``
 
 function Cart (props) {
+  
     function getCountBook(id){
       let count = 0;
       props.data.forEach((book) => (book.id === id && count++));
+      debugger
       return count;
     }
 
@@ -32,6 +34,12 @@ function Cart (props) {
       return sum;
     }
 
+    function deleteBookSelect(idBook){
+      debugger
+      const objWithIdIndex = props.data.findIndex((obj) => obj.id === idBook);
+      props.data.splice(objWithIdIndex, 1);
+    }
+    
   return (
       <Container>
         <Navbar/>
@@ -51,7 +59,7 @@ function Cart (props) {
                   </Td>
                   <Td>{getCountBook(book.id)}</Td>
                   <Td>{book.price}</Td>
-                  <Td><FontAwesomeIcon icon={faTrashCan} style={{color: "red"}}></FontAwesomeIcon></Td>
+                  <Td><FontAwesomeIcon icon={faTrashCan} onClick={(e) =>deleteBookSelect(book.id)} style={{color: "red", cursor: "pointer"}}></FontAwesomeIcon></Td>
               </tbody>
               )
               })}

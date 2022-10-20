@@ -47,34 +47,36 @@ const Button = styled.button`
 width:40%,
 height:30%`
 
-function Book (props) {
+function Book ({id, name, description, author, price, addBookToCart, setIdBook}) {
 
-    function selectBook(e){
-        props.setIdBook(e.target.id)
+    const theBook = {id, name, description, author, price};
+    function selectBook(id){
+        setIdBook(id)
     }
 
-    function addBookToCart(){
-        debugger
-        props.getBookDataById(props) 
-    }
+    // function addBookToCart(){
+    //     debugger
+    //     //this.props.dispatch( resetRegisterStatus() )
+    //     getBookDataById(props) 
+    // }
 
   return (
     <Container>
     {/* {books.map(function(e){
         return( <ListBook> */}
-        <ListBook>
-            <NavLink to="/Product">
-                <Button key={props.id} id={props.id} onClick={(selectBook)}>
-                    <ImgBooks id={props.id}></ImgBooks>
+        <ListBook >
+            <NavLink to="/Product" key={id}>
+                <Button key={id} id={id} onClick={(selectBook(id))}>
+                    <ImgBooks></ImgBooks>
                 </Button>
             </NavLink>
             <Info>
-                <NameBook>{props.name}</NameBook>
-                <DataBook>{props.author}</DataBook>
-                <DataBook>{props.price}
+                <NameBook>{name}</NameBook>
+                <DataBook>{author}</DataBook>
+                <DataBook>{price}
                 <FontAwesomeIcon icon={faEuro}></FontAwesomeIcon>
                 </DataBook> 
-                <FontAwesomeIcon icon={faShoppingCart} onClick={addBookToCart} size={'lg'} style={{cursor: "pointer", display: "table-column"}}></FontAwesomeIcon>  
+                <FontAwesomeIcon icon={faShoppingCart} onClick={() => addBookToCart(theBook)} size={'lg'} style={{cursor: "pointer", display: "table-column"}}></FontAwesomeIcon>  
             </Info>   
             
         </ListBook>

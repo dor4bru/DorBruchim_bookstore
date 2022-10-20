@@ -12,29 +12,43 @@ import Thanks from './pages/Thanks'
 function App(){
 
   const [idStoreSelect, setIdStoreSelect] = useState('');
-  const [idBookSelect, setIdBookSelect] = useState('');
-  const [bookDataSelectToBuy, setBookDataSelectToBuy] = useState([])
+  const [selectedBookId, setSelectedBookId] = useState('');
   const [orderId, setOrderId] = useState();
+  const [booksCart, setBooksCart] = useState([]);
 
+  function addBookToCart(book) {
+    const lsBooksCart = JSON.parse(localStorage.getItem('booksCart'));
+    console.log('saving the current cart: ' + JSON.stringify([book, ...lsBooksCart]))
+    setBooksCart([book, ...lsBooksCart]);
+  }
+
+  // Save cart to local storage
   useEffect(() => {
-    localStorage.setItem('books', JSON.stringify(bookDataSelectToBuy));
+    localStorage.setItem('booksCart', JSON.stringify(booksCart));
+  }, [booksCart]);
+
+
+  // useEffect(() => {
+  //   localStorage.setItem('books', JSON.stringify(bookDataSelectToBuy));
   
-  }, [bookDataSelectToBuy]);
+  // }, [bookDataSelectToBuy]);
 
   return (
     <Routes>
       <Route path="/" element={<Home data ={idStoreSelect} updateIdStore={setIdStoreSelect}/>}></Route>
+
       <Route path="/Books" element={<BooksList data ={idStoreSelect} 
-                                               bookData={idBookSelect} 
-                                               cartBookData={bookDataSelectToBuy}
-                                               updateIdBook={setIdBookSelect} 
-                                               getBookById={setBookDataSelectToBuy}/>}></Route>
-      <Route path="/Product" element={<Product data={idBookSelect}
-                                               cartBookData={bookDataSelectToBuy}
-                                               getBookById={setBookDataSelectToBuy}/>}></Route>
-      <Route path="/Cart" element={<Cart data={bookDataSelectToBuy}/>}></Route>
-      <Route path="/FinalizeOrder" element={<FinalizeOrder data={bookDataSelectToBuy}
+                                               setSelectedBookId={setSelectedBookId} 
+                                               addBookToCart={addBookToCart} />}></Route>
+
+      <Route path="/Product" element={<Product bookId={selectedBookId}
+                                               addBookToCart={addBookToCart} />}></Route>
+
+      <Route path="/Cart" element={<Cart data={booksCart}/>}></Route>
+
+      <Route path="/FinalizeOrder" element={<FinalizeOrder data={booksCart}
                                                getOrderId={setOrderId}/>}></Route>
+
       <Route path="/Thanks" element={<Thanks data={orderId}/>}></Route>
     </Routes>
   )

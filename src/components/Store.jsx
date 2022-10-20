@@ -21,7 +21,7 @@ function Store(props) {
                     <Button onClick={createStore}>
                     <Imgstore src={`${props.image}`}  key={props.id} id={props.id}></Imgstore>
                     </Button>
-                </DivImg>
+                    </DivImg>
                 </NavLink>
                 <Info>
                     <NameStore>{props.name}</NameStore>

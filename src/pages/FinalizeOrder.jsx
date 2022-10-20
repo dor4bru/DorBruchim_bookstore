@@ -1,50 +1,84 @@
-import React, {useState, useRef, useEffect} from 'react'
-import ReactDOM  from 'react-dom'
+import React, {useEffect} from 'react'
+import { NavLink, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import axios from 'axios';
 
-export default function FinalizeOrder() {
-    const [contactInfo, setContactInfo] = useState({
+export default function FinalizeOrder(props) {
+   // const navigate = useNavigate();
+    const booksData = props.data;
+    const order = {
         firstName: "",
-        lastName: "",
+        lastName: "",       
         address: "",
         phonenumber: "",
-      });
-    const [firstName, setFirstName] = useState('')
-    const [lastName, setLastName] = useState('');
-    const [address, setAddress] = useState('');
-    const [phoneNum, setPhoneNum] = useState('');
-    
-    const handleFirstNameChange = (event) => {
-        setFirstName(event.target.value)
-    };
+    }
+    let firstN;
+    let lastN;
+    let add;
+    let phone;
 
-    const handleLastNameChange = (event) =>{
-        setLastName(event.target.value)
-    };
-
-    const handleaddressChange = (event) =>{
-        setAddress(event.target.value)
+    const handelSubmit= () => {
+        buildJsonForPostApi()
     }
 
-    const handlePhoneNumChange = (event) =>{
-        setPhoneNum(event.target.value)
-    }
+    function buildJsonForPostApi(){
+        console.log('got resp 0 props: ' + JSON.stringify(props));
+        const totalAmount = booksData.map(b => b.price).reduce((p1, p2) => p1 + p2, 0);
+        console.log('got resp amount: ' + totalAmount);
+        
+
+        axios.post(`https://logical-calf-89.hasura.app/api/rest/orders`,{ address: order.address,
+        amount: totalAmount,
+        books: booksData,
+        firstName: order.firstName,
+        lastName: order.lastName,
+        phoneNumber: order.phonenumber
+     })
+        .then(res => {
+          console.log(res);
+          console.log(res.data);
+        })
+        //     // POST request using axios inside useEffect React hook
+        //     const article = { title: JSON.stringify({ address: order.address,
+        //                         amount: totalAmount,
+        //                         books: booksData,
+        //                         firstName: order.firstName,
+        //                         lastName: order.lastName,
+        //                         phoneNumber: order.phonenumber
+        //                     }) };
+        //     axios.post('https://logical-calf-89.hasura.app/api/rest/orders',{ address: order.address,
+        //     amount: totalAmount,
+        //     books: booksData,
+        //     firstName: order.firstName,
+        //     lastName: order.lastName,
+        //     phoneNumber: order.phonenumber
+        // }).then(response =>  console.log(response.json()))
+
+        // // console.log('posting: ' + requestOptions);
+        // // axios.post('https://logical-calf-89.hasura.app/api/rest/orders', requestOptions)
+        // .then(response =>  response.json())
+        // .then(body => {
+        //     console.log('post body: ' + JSON.stringify(body));
+        //     navigate('/Thanks')
+        //('https://logical-calf-89.hasura.app/api/rest/orders', requestOptions).then((response) => {
+        //     console.log('got resp');
+        //     return response.json();
+        // }).then(body => {
+        //     console.log('post body: ' + JSON.stringify(body));
+        //     navigate('/Thanks');
+        // }).catch(err => {
+        //     console.log('error occurred due to post: ' + JSON.stringify(err));
+        //     console.log('error occurred due to post: ' + err.code);
+        //     console.log('error occurred due to post: ' + err.message);
+        //     console.log('error occurred due to post: ' + err.type);
+        // }).finally(() => {
+        //     console.log('in finally');
+        // });
+        
+        
+        
+        
     
-     let firstN = useRef()
-     let lastN = useRef();
-     let add = useRef();
-     let phone = useRef();
-
-    // useEffect(() => {
-  
-    //   }, []);
-    const handelSubmit=(e)=>{
-        // setFirstName(firstN.current.value)
-        // console.log(firstName)
-
-        //alert(firstName)
-        debugger
-        //setContactInfo({ ...contactInfo, [e.target.name]: e.target.value })
     }
 
     const Container = styled.div`
@@ -71,22 +105,15 @@ export default function FinalizeOrder() {
     border:2px solid black;
     margin: 3px;`
 
-
-
   return (
     <Container>
-        <Form onSubmit={(e) =>{handelSubmit(e)}} >
-        <Title>Finalize Order</Title>
-
-        <Input type="name" ref={firstN} placeholder="first name" onChange={handleFirstNameChange} value={firstName} ></Input>
-
-        <Input type="text"  ref={lastN} placeholder="last name" onChange={handleLastNameChange} value={lastName}></Input><br/>
-  
-        <Input type="text" ref={add} value={address} placeholder="address" onChange={handleaddressChange} value={address}></Input><br/>
-
-        <Input type="text" ref={phone} placeholder="phone number" onChange={handlePhoneNumChange} value={phoneNum}></Input><br/>
-        
-        <Input type="submit" value="Buy"/>
+        <Form onSubmit={(e) =>{handelSubmit()}} >
+            <Title>Finalize Order</Title>
+            <Input type="text" required value={firstN} placeholder="first name" onChange={(e) => order.firstName = e.target.value} ></Input>
+            <Input type="text"  required value={lastN} placeholder="last name" onChange={(e) => order.lastName = e.target.value} ></Input><br/>
+            <Input type="text" required value={add} placeholder="address" onChange={(e) => order.address = e.target.value}></Input><br/>
+            <Input type="text" required value={phone} placeholder="phone number" onChange={(e) => order.phonenumber = e.target.value}></Input><br/>
+            <Input type="submit" value="Buy"/>
         </Form>
     </Container>
   )

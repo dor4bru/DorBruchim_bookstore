@@ -1,67 +1,50 @@
 // import
-import React, { useState } from 'react'
-import Navbar from '../components/Navbar'
+import React, {useState ,useEffect} from 'react'
 import styled from 'styled-components'
-import Store from '../pages/Store'
-import { Routes, Route } from 'react-router-dom'
-import Books from './Books'
+import Navbar from '../components/Navbar'
+import Store from '../components/Store'
 import FinalizeOrder from './FinalizeOrder'
-// import Cart from './Cart'
-import Product from './Product'
+import {getStoresData} from '../api/Store'
 
 const Container = styled.div``
 
+const StoreDiv = styled.div`
+display: grid;
+grid-template-columns: 1fr 1fr 1fr;
+grid-column-gap: 20px;
+padding: 20px;
+justify-content: space-between;`
+
+const storeImages = require('../data/StoreImageMap.json');
+
 // Home page
-function Home() {
-  let [bookPage, setBookPage] = useState(true);
-  let [storePage, setStorePage] = useState(true);
-  let [storeIdSelect, setSelectIdStore] = useState('');
-  // let [product, setProduct] = useState(true)  
+function Home(props) {
+  let [storesData, setStoresData] = useState([]);
 
-  const hideStorePage = () => {
-    setBookPage(false)
+  useEffect(() => {
+    const getStoresDataAsync = async () => {
+      setStoresData(await getStoresData());
+    };
+    try{
+      getStoresDataAsync(); 
+    }catch(error){
+      console.log(error)
+    }
+  }, []);    
+
+  function setIdStore(id){
+    props.updateIdStore(id)
   }
-
-  const hideBookPage = () => {
-    setStorePage(false)
-  }
-
-  function getIdStore(id) {
-    debugger
-    setSelectIdStore(id)
-    console.log(storeIdSelect)
-  }
-  const childStore = { 
-    hideStorePage, 
-    getIdStore,
- };
- const childBook = {
-  hideBookPage,
-  storeIdSelect
- }
-
   return (
     <Container>
         <Navbar/>
-        <Routes>
-          <Route path="/Books" element={storePage && <Books {...childBook} />}></Route>
-        </Routes>
-        {/* {bookPage && <Store hideStorePage={hideStorePage, getIdStore}/>} */}
-        {bookPage && <Store {...childStore}/>}
-        
-        <Routes>
-          <Route path="/Product" element={<Product/>}></Route>
-        </Routes>
-        {/* <Books/> */}
-        <FinalizeOrder/>
-        {/* <Cart></Cart> */}
+        <StoreDiv>
+          {storesData.map(store => {
+            return  <Store {...{ ...store, ...{key: store.id, image: storeImages[store.id],...{setIdStore}}} } />
+          })}
+        </StoreDiv>
     </Container>  
   )
 }
-
-    /* <NavLink to="/testpage">
-            <button type="button">Read More</button>
-          </NavLink>  */
-         
 
 export default Home

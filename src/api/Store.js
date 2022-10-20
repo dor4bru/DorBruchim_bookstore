@@ -10,15 +10,6 @@ export const getStoresData = async () => {
     }
 }
 
-export const getImageStoreData = async () => {
-    try{
-        let data = require('../data/StoreImageMap.json');
-        return data.Store
-    }catch(error){
-        console.log(error)
-    }
-}
-
 
 // // fnac_store_books.json
 // {

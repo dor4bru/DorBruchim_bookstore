@@ -64,9 +64,7 @@ function Product(props) {
     function addBookToCart(){
         let bookDataToBuy ={};
         BookData.find(b => bookDataToBuy = b)
-
-        props.getBookById([{bookDataToBuy}])
-        
+        props.getBookById([bookDataToBuy]) 
     }
 
   return (
@@ -101,8 +99,7 @@ function Product(props) {
                         </Price>
                         <Description>
                         As an alternative, pre-order the Kindle 
-                        </Description>
-                            
+                        </Description>                       
                         <Description>
                         eBook insteat to automatiaclly receive on day of release
                         </Description>

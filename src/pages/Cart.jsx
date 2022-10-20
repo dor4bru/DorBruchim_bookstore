@@ -20,16 +20,6 @@ const Title = styled.h3``
 const Description = styled.p``
 
 function Cart (props) {
-  //debugger
-  //console.log('cart props', props)
-    // const [contacts, updateContacts] = useState([]);
-
-    // const addContact = (contact) => {
-    //     updateContacts([...contacts, contact]);
-    //   };
-
-    // console.log(contacts)
-
     function getCountBook(id){
       let count = 0;
       props.data.forEach((book) => (book.id === id && count++));
@@ -44,7 +34,7 @@ function Cart (props) {
 
   return (
       <Container>
-        <Navbar></Navbar>
+        <Navbar/>
         <Table id="cart">
           <tbody>
             <Th>Name</Th>
@@ -76,8 +66,6 @@ function Cart (props) {
         <NavLink to='/FinalizeOrder' >
           <Button>Next</Button>
         </NavLink>
-          {/* <FormOrder addContact={addContact}/> */}
-          {/* <Thanks contacts = {contacts}/> */}
       </Container>
   )
 }

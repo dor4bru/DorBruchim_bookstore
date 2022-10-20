@@ -54,8 +54,8 @@ function Book (props) {
     }
 
     function addBookToCart(){
-        props.getBookDataById(props)
-    
+        debugger
+        props.getBookDataById(props) 
     }
 
   return (

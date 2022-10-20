@@ -1,19 +1,9 @@
 // import
 import React, {useState ,useEffect} from 'react'
-import styled from 'styled-components'
 import Navbar from '../components/Navbar'
 import Store from '../components/Store'
-import FinalizeOrder from './FinalizeOrder'
 import {getStoresData} from '../api/Store'
-
-const Container = styled.div``
-
-const StoreDiv = styled.div`
-display: grid;
-grid-template-columns: 1fr 1fr 1fr;
-grid-column-gap: 20px;
-padding: 20px;
-justify-content: space-between;`
+import { Container, StoreDiv } from "../styles/homeStyles";
 
 const storeImages = require('../data/StoreImageMap.json');
 
@@ -35,6 +25,7 @@ function Home(props) {
   function setIdStore(id){
     props.updateIdStore(id)
   }
+  
   return (
     <Container>
         <Navbar/>

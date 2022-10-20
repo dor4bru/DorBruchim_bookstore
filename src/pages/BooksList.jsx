@@ -32,8 +32,7 @@ function BooksList(props) {
     function getBookDataById(book){
         let tempBook = props.cartBookData;
         props.getBookById(tempBook => [...tempBook, book]);
-        //localStorage.setItem('book', JSON.stringify(book));
-
+        localStorage.setItem('book', JSON.stringify(tempBook));
     }
 
     return (
@@ -45,7 +44,7 @@ function BooksList(props) {
             <Container>
                 {booksData.map(book => {
                 if(book.store_id === props.data){
-                    return  <Book {...{ ...book,...{setIdBook}, ...{getBookDataById}} } />
+                     return <Book {...{ ...book,...{setIdBook}, ...{getBookDataById}} } />
                 }
                 })}
             </Container>

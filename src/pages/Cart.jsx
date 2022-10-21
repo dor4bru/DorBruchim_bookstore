@@ -1,80 +1,85 @@
-import React from 'react'
-import styled from 'styled-components';
+import React, { useState, useEffect } from 'react'
 import { NavLink } from 'react-router-dom';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {faTrashCan, faEuro} from "@fortawesome/free-solid-svg-icons"
 import Navbar from '../components/Navbar';
+import Table from '../components/Table';
+import { Container, Button } from '../styles/cartStyles';
 
-const Container = styled.div``
-const Button = styled.button``
-const Table = styled.table``
 
-const Tr = styled.tr``
+const column = [
+  { heading: 'Name', value: 'name' },
+  { heading: 'Quantity', value: 'quantity' },
+  { heading: 'Price', value: 'price' },
+  { heading: '', value: 'icon' },
+]
 
-const Td = styled.td``
+function Cart({ data }) {
+  debugger
+  const [cartList, setCartList] = useState([]);
+  const [sumItemsCart, setSumItemCart] = useState(); 
+  let dataTable = [];
+  let sum = calculateSum();
+  buildDataForTable();
 
-const Th = styled.th``
+  useEffect(() => {
+    debugger
+    setCartList(cartList)
+    setSumItemCart(sum)
+    buildDataForTable()
+  }, [cartList]);
 
-const Title = styled.h3``
+  function calculateSum() {
+    return data.map(b => b.price).reduce((p1, p2) => p1 + p2, 0);
+  }
 
-const Description = styled.p``
+  function deleteBookSelect(idBook) {
+    debugger
+    data.findIndex((obj, index) => {
+      if (obj.id === idBook) {
+        delete data[index]
+      }
+    });
+    calculateSum();
+    buildDataForTable();
+    setCartList(cartList)
+  }
 
-function Cart (props) {
-  
-    function getCountBook(id){
-      let count = 0;
-      props.data.forEach((book) => (book.id === id && count++));
-      debugger
-      return count;
-    }
+  function getAmount(id) {
+    let amount = 0;
+    data.some((book, index) => {
+      if (book.id === id) {
+        if(amount > 0){
+          delete data[index]
+        }
+        amount++;
+      }
+    });
+    return amount;
+  }
 
-    function calculateSum(){
-      let sum = 0;
-      props.data.forEach((book) => (sum+= book.price));
-      return sum;
-    }
+  function buildDataForTable() {
+    data.map(book => {
+      dataTable = [
+        {
+          id: book.id,
+          name: book.author + ' - ' + book.name,
+          description: book.description,
+          price: book.price,
+          quantity: getAmount(book.id)
+        }, ...dataTable]
+    })
 
-    function deleteBookSelect(idBook){
-      debugger
-      const objWithIdIndex = props.data.findIndex((obj) => obj.id === idBook);
-      props.data.splice(objWithIdIndex, 1);
-    }
-    
+    dataTable.sum = sum
+    debugger
+  }
+
   return (
-      <Container>
-        <Navbar/>
-        <Table id="cart">
-          <tbody>
-            <Th>Name</Th>
-            <Th>Quantity</Th>
-            <Th>Price</Th>
-            <Th></Th>
-          </tbody>
-            {props.data.map(book => {
-              return(
-                <tbody>
-                  <Td>
-                    <Title>{book.author} - {book.name}</Title>
-                    <Description>{book.description}</Description>
-                  </Td>
-                  <Td>{getCountBook(book.id)}</Td>
-                  <Td>{book.price}</Td>
-                  <Td><FontAwesomeIcon icon={faTrashCan} onClick={(e) =>deleteBookSelect(book.id)} style={{color: "red", cursor: "pointer"}}></FontAwesomeIcon></Td>
-              </tbody>
-              )
-              })}
-          <tbody>
-            <Td></Td>
-            <Td></Td>
-            <Td>{calculateSum()}
-            <FontAwesomeIcon icon={faEuro}></FontAwesomeIcon>
-            </Td>
-          </tbody>
-        </Table>
-        <NavLink to='/FinalizeOrder' >
-          <Button>Next</Button>
-        </NavLink>
-      </Container>
+    <Container>
+      <Navbar />
+      <Table data={dataTable} column={column} />
+      <NavLink to='/FinalizeOrder' >
+        <Button>Next</Button>
+      </NavLink>
+    </Container>
   )
 }
 

@@ -1,57 +1,49 @@
-import React, {useState ,useEffect} from 'react'
-import styled from 'styled-components';
+import React, { useState, useEffect } from 'react'
 import { NavLink } from 'react-router-dom';
-import {FontAwesomeIcon, } from '@fortawesome/react-fontawesome'
-import {faShoppingCart,} from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon, } from '@fortawesome/react-fontawesome'
+import { faShoppingCart, } from "@fortawesome/free-solid-svg-icons"
 import { getBooksData } from '../api/Books'
 import Book from '../components/Book';
 import Navbar from '../components/Navbar';
+import {Container, DivBookList, ErrorDiv} from '../styles/bookListStyles'
 
-
-const Container = styled.div``
-
-function BooksList({setBookById, setSelectedBookId, cartBookData, addBookToCart, data}) {
+function BooksList({ setSelectedBookId, addBookToCart, data }) {
     let [booksData, setBooksData] = useState([]);
 
-    useEffect(() =>{
+    useEffect(() => {
         const getBooksDataAsync = async () => {
             setBooksData(await getBooksData());
         };
-        try{
-            getBooksDataAsync(); 
-        }catch(error){
+        try {
+            getBooksDataAsync();
+        } catch (error) {
             console.log(error);
         }
     }, []);
 
-    function setIdBook(id){
+    function setIdBook(id) {
         useEffect(() => {
             setSelectedBookId(id);
         }, []);
     }
 
-    // function getBookDataById(book){
-    //     debugger
-    //     let tempBook = cartBookData;
-    //     setBookById(tempBook => [...tempBook, book]);
-    //     //localStorage.setItem('book', JSON.stringify(tempBook));
-    // }
-
     return (
         <Container>
             <Navbar></Navbar>
             <NavLink to="/Cart">
-                <FontAwesomeIcon icon={faShoppingCart} style={{color: "black"}}></FontAwesomeIcon>
+                <FontAwesomeIcon icon={faShoppingCart} style={{ color: "black" }}></FontAwesomeIcon>
             </NavLink>
-            <Container>
+            <DivBookList>
                 {booksData.map(book => {
-                if(book.store_id === data){
-                     return <Book {...{ ...book, addBookToCart, setIdBook, key: book.id} } />
-                }
+                    if (book.store_id === data) {
+                        return <Book {...{ ...book, addBookToCart, setIdBook, key: book.id }} />
+                    }
+                    // else{
+                    //     return <ErrorDiv> No have this book please try again layter</ErrorDiv>
+                    // }
                 })}
-            </Container>
+            </DivBookList>
         </Container>
-
     )
 }
 

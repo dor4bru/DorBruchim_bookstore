@@ -1,11 +1,14 @@
 import styled from "styled-components";
-import px2vw from "../utils/px2vw";
 
 export const Container = styled.div`
     width: 100%
     border-radius: 2px;
     transition: all 0.3s ease
-    display: flex;
+    display: grid;
+    border-style: solid;
+    border-color: #FFC770;
+    margin :2px
+ 
 `
 export const DivImg = styled.div`
     width: 100%;
@@ -24,9 +27,10 @@ export const Info = styled.div`
 }
 `
 export const NameStore = styled.h3`
-font-size: 20px;
+font-size: 85%;
 font-wieght: bold;
 text-align: center;
+
 `
 
 export const DataStore = styled.div`

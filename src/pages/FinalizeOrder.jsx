@@ -1,15 +1,13 @@
-import React, { useCallback, useEffect, useState } from 'react'
-import { NavLink, useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
-import axios from 'axios';
+import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import { postOrder } from '../api/Order'
 import Navbar from '../components/Navbar';
+import {Container, Form, Title, Input} from '../styles/finilaizeOrderStyles'
 
 export default function FinalizeOrder(props) {
     const navigate = useNavigate();
     const booksData = props.data;
     const [body, setBody] = useState();
-    const [finalOrder, setFinalOrder] = useState([])
     const [doPost, setDoPost] = useState(false)
 
     const order = {
@@ -60,30 +58,6 @@ export default function FinalizeOrder(props) {
         }
         setBody(resapi)
     }
-
-    const Container = styled.div`
-    text-align: center;
-    background-color: white;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: black;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-column-gap: 20px;
-    `
-    const Form = styled.form`
-    border:2px solid black;
-    padding: 20px;
-    `
-
-    const Title = styled.h2`
-    `
-    const Input = styled.input`
-    display: grid
-    align-items: center;
-    border:2px solid black;
-    margin: 3px;`
 
     return (
         <Container>

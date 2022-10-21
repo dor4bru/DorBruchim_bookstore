@@ -1,14 +1,8 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom';
-import styled from 'styled-components'
 import Navbar from '../components/Navbar'
+import {Container, HomePage, Title, GoodBye, Order} from '../styles/thanksStyles'
 
-const Container = styled.div`
-`
-const HomePage = styled.button``
-const Title = styled.div`` 
-const Order = styled.div``
-const GoodBye = styled.div``
 
 const Thanks = (props) => {
   return (

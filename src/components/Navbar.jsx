@@ -1,28 +1,14 @@
 // import
 import React from 'react'
 import { NavLink } from 'react-router-dom';
-import styled from 'styled-components'
 import logoImg from '../img/logo.png';
-
-const Container = styled.div`
-background-color: #FFC770;
-height: 50px;
-`
-// Logo book store
-const Logo = styled.img.attrs({
-    src:`${logoImg}`
-})
-//style logo
-`
-width: 70px;
-margin: 11px;
-`
+import { Container, Logo } from '../styles/navBarStyles';
 
 const Navbar = () => {
   return (
     <Container>
       <NavLink to='/'>
-        <Logo/>
+        <Logo src={`${logoImg}`} />
       </NavLink>
     </Container>
   )

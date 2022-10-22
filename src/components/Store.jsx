@@ -15,8 +15,8 @@ function Store({ id, image, name, address, city, setIdStore }) {
             <ListStore key={id}>
                 <NavLink to='/Books' >
                     <DivImg>
-                        <Button onClick={createStore}>
-                            <Imgstore src={`${image ? image : "defualt-store"}`} key={id} id={id}></Imgstore>
+                        <Button onClick={createStore}  >
+                            <Imgstore src={`${image ? image : "defualt-store"}`}key={id} id={id}></Imgstore>
                         </Button>
                     </DivImg>
                 </NavLink>

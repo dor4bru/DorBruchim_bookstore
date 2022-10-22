@@ -31,5 +31,6 @@ flex-direction: column;
 mragin: 3px
 `
 export const Button = styled.button`
-width:40%,
-height:30%`
+width:40%;,
+height:30%;
+cursor: pointer;`

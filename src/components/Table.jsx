@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashCan, faEuro } from "@fortawesome/free-solid-svg-icons"
 
 const Table = ({ data, column, deleteBookSelect }) => {
-    debugger
     return (
         <CartTable>
             <Thead>
@@ -52,7 +51,7 @@ const TableRow = ({ item, column }) => (
                 case 'quantity':
                     return <Td>{item[`${columnItem.value}`]}</Td>
                 default:
-                    return
+                    return <Td></Td>
             }
         })}
     </Tr>

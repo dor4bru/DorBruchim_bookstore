@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { NavLink } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Table from '../components/Table';
-import { Container, Button } from '../styles/cartStyles';
+import { Container, Button, ButtonDiv } from '../styles/cartStyles';
 
 
 const column = [
@@ -13,15 +13,13 @@ const column = [
 ]
 
 function Cart({ data }) {
-  debugger
   const [cartList, setCartList] = useState([]);
-  const [sumItemsCart, setSumItemCart] = useState(); 
+  const [sumItemsCart, setSumItemCart] = useState();
   let dataTable = [];
   let sum = calculateSum();
   buildDataForTable();
 
   useEffect(() => {
-    debugger
     setCartList(cartList)
     setSumItemCart(sum)
     buildDataForTable()
@@ -32,7 +30,6 @@ function Cart({ data }) {
   }
 
   function deleteBookSelect(idBook) {
-    debugger
     data.findIndex((obj, index) => {
       if (obj.id === idBook) {
         delete data[index]
@@ -47,7 +44,7 @@ function Cart({ data }) {
     let amount = 0;
     data.some((book, index) => {
       if (book.id === id) {
-        if(amount > 0){
+        if (amount > 0) {
           delete data[index]
         }
         amount++;
@@ -69,7 +66,6 @@ function Cart({ data }) {
     })
 
     dataTable.sum = sum
-    debugger
   }
 
   return (
@@ -77,7 +73,9 @@ function Cart({ data }) {
       <Navbar />
       <Table data={dataTable} column={column} />
       <NavLink to='/FinalizeOrder' >
-        <Button>Next</Button>
+        <ButtonDiv>
+          <Button>Next</Button>
+        </ButtonDiv>
       </NavLink>
     </Container>
   )

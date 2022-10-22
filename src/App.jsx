@@ -1,5 +1,5 @@
 // import
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
 import BooksList from './pages/BooksList'
@@ -9,7 +9,7 @@ import FinalizeOrder from './pages/FinalizeOrder'
 import Thanks from './pages/Thanks'
 
 // main app
-function App(){
+function App() {
 
   const [idStoreSelect, setIdStoreSelect] = useState('');
   const [selectedBookId, setSelectedBookId] = useState('');
@@ -27,29 +27,23 @@ function App(){
     localStorage.setItem('booksCart', JSON.stringify(booksCart));
   }, [booksCart]);
 
-
-  // useEffect(() => {
-  //   localStorage.setItem('books', JSON.stringify(bookDataSelectToBuy));
-  
-  // }, [bookDataSelectToBuy]);
-
   return (
     <Routes>
-      <Route path="/" element={<Home data ={idStoreSelect} updateIdStore={setIdStoreSelect}/>}></Route>
+      <Route path="/" element={<Home data={idStoreSelect} updateIdStore={setIdStoreSelect} />}></Route>
 
-      <Route path="/Books" element={<BooksList data ={idStoreSelect} 
-                                               setSelectedBookId={setSelectedBookId} 
-                                               addBookToCart={addBookToCart} />}></Route>
+      <Route path="/Books" element={<BooksList data={idStoreSelect}
+        setSelectedBookId={setSelectedBookId}
+        addBookToCart={addBookToCart} />}></Route>
 
       <Route path="/Product" element={<Product bookId={selectedBookId}
-                                               addBookToCart={addBookToCart} />}></Route>
+        addBookToCart={addBookToCart} />}></Route>
 
-      <Route path="/Cart" element={<Cart data={booksCart}/>}></Route>
+      <Route path="/Cart" element={<Cart data={booksCart} />}></Route>
 
       <Route path="/FinalizeOrder" element={<FinalizeOrder data={booksCart}
-                                               getOrderId={setOrderId}/>}></Route>
+        getOrderId={setOrderId} />}></Route>
 
-      <Route path="/Thanks" element={<Thanks data={orderId}/>}></Route>
+      <Route path="/Thanks" element={<Thanks data={orderId} />}></Route>
     </Routes>
   )
 }

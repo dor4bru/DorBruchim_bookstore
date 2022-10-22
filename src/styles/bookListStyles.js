@@ -9,4 +9,4 @@ grid-column-gap: 20px;
 padding: 20px;
 justify-content: space-between;`
 
-export const divError = styled.div``
+export const ErrorDiv = styled.div``

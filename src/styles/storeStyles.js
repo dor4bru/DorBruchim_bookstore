@@ -37,8 +37,9 @@ export const DataStore = styled.div`
 text-align: center;
 `
 export const Button = styled.button`
-object-fit: cover;
-        overflow: hidden;
+    object-fit: cover;
+     overflow: hidden;
+     cursor: pointer;
 `
 // export const Imgstore = styled.img`
 // cursor: pointer;

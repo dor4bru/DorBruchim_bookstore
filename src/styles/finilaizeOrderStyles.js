@@ -1,19 +1,14 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-    text-align: center;
-    background-color: white;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: black;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-column-gap: 20px;`
+`
 
 export const Form = styled.form`
     border:2px solid black;
-    padding: 20px;`
+    padding: 20px;
+    max-width: 47%;
+    margin-left: 20%;
+    margin-top: 5%;`
 
 export const Title = styled.h2``
 
@@ -22,3 +17,14 @@ export const Input = styled.input`
     align-items: center;
     border:2px solid black;
     margin: 3px;`
+
+    
+export const FormDiv = styled.div`
+    text-align: center;
+    background-color: white;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: black;
+ 
+`

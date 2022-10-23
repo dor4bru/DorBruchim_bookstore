@@ -10,6 +10,10 @@ text-align: center;
 `
 
 export const CartDiv = styled.div`
+position: absolute;
+top:0;
+left:0;
+margin: 0%;
 `
 
 export const ImgBooks = styled.img`
@@ -17,6 +21,7 @@ cursor: pointer;
 width: 100%;
 `
 export const ListBook = styled.div`
+position: relative;
 flex: 1;
 margin: 5px;
 border-radius: 10px;
@@ -41,4 +46,7 @@ export const Button = styled.button`
 width:50%;
 cursor: pointer;
 text-align: center;
+padding: 0;
+border: none;
+background: none;
 `

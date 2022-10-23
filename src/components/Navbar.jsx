@@ -16,9 +16,9 @@ const Navbar = () => {
           <Logo src={`${logoImg}`} />
         </LogoDiv>
       </NavLink>
-      {/* <ButtonDiv> */}
+      <ButtonDiv>
         <Button onClick={changeLang}>EN</Button>
-      {/* </ButtonDiv> */}
+      </ButtonDiv>
     </Container>
   )
 }

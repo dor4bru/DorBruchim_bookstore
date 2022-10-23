@@ -5,9 +5,7 @@ export const Container = styled.div`
 
 export const Form = styled.form`
     border:2px solid black;
-    padding: 20px;
-    max-width: 47%;
-    margin-left: 20%;
+    width: 100%;
     margin-top: 5%;`
 
 export const Title = styled.h2``
@@ -16,7 +14,7 @@ export const Input = styled.input`
     display: grid
     align-items: center;
     border:2px solid black;
-    margin: 3px;`
+    margin: 1%;`
 
     
 export const FormDiv = styled.div`

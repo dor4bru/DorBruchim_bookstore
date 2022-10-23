@@ -31,7 +31,7 @@ function Book({ id, name, description, author, price, addBookToCart, setIdBook }
                     </DataBook>
                 </Info>
                 <CartDiv>
-                    <FontAwesomeIcon icon={faShoppingCart} onClick={() => addBookToCart(theBook)} size={'lg'}
+                    <FontAwesomeIcon icon={faShoppingCart} onClick={() => addBookToCart(theBook)} size={'md'}
                         style={{ cursor: "pointer", display: "table-column" }}></FontAwesomeIcon>
                 </CartDiv>
             </ListBook>

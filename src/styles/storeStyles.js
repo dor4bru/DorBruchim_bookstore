@@ -26,20 +26,24 @@ export const Info = styled.div`
     width:100%
 }
 `
-export const NameStore = styled.h3`
-font-size: 85%;
+export const NameStore = styled.h1`
+font-size: large;
 font-wieght: bold;
 text-align: center;
-
 `
 
 export const DataStore = styled.div`
 text-align: center;
+font-size: meduim;
+
 `
 export const Button = styled.button`
     object-fit: cover;
      overflow: hidden;
      cursor: pointer;
+     padding: 0;
+    border: none;
+    background: none;
 `
 // export const Imgstore = styled.img`
 // cursor: pointer;
@@ -49,8 +53,8 @@ export const Button = styled.button`
 
 export const Imgstore = styled.img`
 cursor: pointer;
-width: 100%;
-height: 10vh;
+width: 15vh;
+height: 14vh;
 
 
 `

@@ -11,7 +11,7 @@ display:grid;
 export const ProductDiv = styled.div`
 padding: 10px;
 border-style: solid;
-border-color: #FFC770;
+border-color: #33b5e5;
 margin-left: 15%;
 max-width: 65%;
 `
@@ -36,6 +36,7 @@ export const Title = styled.h2`
 `
 export const ButtonDiv = styled.div`
 text-align: center;
+padding: 1%;
 `
 export const PriceDiv = styled.div`
 text-align: center;
@@ -44,9 +45,8 @@ text-align: center;
 export const DataBook = styled.div``
 
 export const Button = styled.button`
-    width: 20%;
     cursor: pointer;
-    background-color: #FFC770;
+    background-color: #33b5e5;
     text-align: center;
     margin-button: 3%;
     cursor: pointer;`
@@ -62,4 +62,5 @@ export const AddCart = styled.div`
 export const Price = styled.div`
     background-color: #fefeed
     text-align: center;
+    padding: 1%;
     `

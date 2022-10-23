@@ -68,12 +68,11 @@ export default function FinalizeOrder(props) {
 
     const checkInput = () =>{
         let number = /^[0-9]+$/;
-        let letterNumber = /^[0-9a-zA-Z]+$/;
         let letter = /^[a-zA-Z]+$/
 
         if((order.phonenumber.match(number) && order.phonenumber.length === 10) && 
         order.firstName.match(letter) && order.lastName.match(letter) &&
-        order.address.match(letterNumber)){
+        order.address.length > 0){
             return true;
         }
         return false;
@@ -92,7 +91,7 @@ export default function FinalizeOrder(props) {
                     <Input type="text" required value={lastN} placeholder="last name" onChange={(e) => order.lastName = e.target.value} ></Input><br />
                     <Input type="text" required value={add} placeholder="address" onChange={(e) => order.address = e.target.value}></Input><br />
                     <Input type="text" required value={phone} placeholder="phone number" onChange={(e) => order.phonenumber = e.target.value}></Input><br />
-                    <Input type="submit" value="Buy" />
+                    <Input type="submit" value="Buy" style={{background:`#01befd` }}/>
                 </Form>
             </FormDiv>
         </Container>

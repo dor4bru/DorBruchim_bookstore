@@ -2,13 +2,19 @@ import styled from 'styled-components'
 
 export const Container = styled.div`
 border-style: solid;
-border-color: #FFC770;
+border-color: #33b5e5;
 margin :2px
+`
+export const DivForButton = styled.div`
+text-align: center;
+`
+
+export const CartDiv = styled.div`
 `
 
 export const ImgBooks = styled.img`
 cursor: pointer;
-width: 60%;
+width: 100%;
 `
 export const ListBook = styled.div`
 flex: 1;
@@ -16,6 +22,7 @@ margin: 5px;
 border-radius: 10px;
 `
 export const Info = styled.div`
+width:100%;
 `
 export const NameBook = styled.h1`
 font-size: medium;
@@ -31,6 +38,7 @@ flex-direction: column;
 mragin: 3px
 `
 export const Button = styled.button`
-width:40%;,
-height:30%;
-cursor: pointer;`
+width:50%;
+cursor: pointer;
+text-align: center;
+`

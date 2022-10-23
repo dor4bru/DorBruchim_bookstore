@@ -6,7 +6,7 @@ export const Container = styled.div`
     transition: all 0.3s ease
     display: grid;
     border-style: solid;
-    border-color: #FFC770;
+    border-color: #33b5e5;
     margin :2px
  
 `

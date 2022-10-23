@@ -4,7 +4,7 @@ export const Container = styled.div`
 `
 
 export const HomePage = styled.button`
-background-color: #FFC770;
+background-color: #33b5e5;
 text-align: center;
 width: 7%;
 cursor: pointer;

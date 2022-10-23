@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { NavLink } from 'react-router-dom';
+import CounterCart from '../components/CounterCart';
 import Navbar from '../components/Navbar';
 import Table from '../components/Table';
 import { Container, Button, ButtonDiv } from '../styles/cartStyles';
@@ -71,6 +72,7 @@ function Cart({ data }) {
   return (
     <Container>
       <Navbar />
+      <CounterCart></CounterCart>
       <Table data={dataTable} column={column} />
       <NavLink to='/FinalizeOrder' >
         <ButtonDiv>

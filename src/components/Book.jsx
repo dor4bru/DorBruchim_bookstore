@@ -3,7 +3,8 @@ import books from '../img/books.jpg';
 import { NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShoppingCart, faEuro } from "@fortawesome/free-solid-svg-icons"
-import {Container, ListBook, Button, ImgBooks, Info, NameBook, DataBook } from '../styles/bookStyle'
+import { Container, ListBook, Button, ImgBooks, Info, NameBook, DataBook, DivForButton, CartDiv } from '../styles/bookStyle'
+import { ButtonDiv } from '../styles/navBarStyles';
 
 function Book({ id, name, description, author, price, addBookToCart, setIdBook }) {
 
@@ -16,9 +17,11 @@ function Book({ id, name, description, author, price, addBookToCart, setIdBook }
         <Container>
             <ListBook >
                 <NavLink to="/Product" key={id}>
-                    <Button key={id} id={id} onClick={(selectBook(id))}>
-                        <ImgBooks src={`${books}`}></ImgBooks>
-                    </Button>
+                    <DivForButton>
+                        <Button key={id} id={id} onClick={(selectBook(id))}>
+                            <ImgBooks src={`${books}`}></ImgBooks>
+                        </Button>
+                    </DivForButton>
                 </NavLink>
                 <Info>
                     <NameBook>{name}</NameBook>
@@ -26,9 +29,11 @@ function Book({ id, name, description, author, price, addBookToCart, setIdBook }
                     <DataBook>{price}
                         <FontAwesomeIcon icon={faEuro}></FontAwesomeIcon>
                     </DataBook>
+                </Info>
+                <CartDiv>
                     <FontAwesomeIcon icon={faShoppingCart} onClick={() => addBookToCart(theBook)} size={'lg'}
                         style={{ cursor: "pointer", display: "table-column" }}></FontAwesomeIcon>
-                </Info>
+                </CartDiv>
             </ListBook>
         </Container>
     )

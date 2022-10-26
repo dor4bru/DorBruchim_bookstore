@@ -43,7 +43,7 @@ function Product() {
                         <StarDiv>({theBook.ratings} {t('ratings')})</StarDiv>
                     </DivRatingAndStar>
                     <Description>{theBook.description}</Description>
-                    <Title>{t('Product')} {t('Deatlies')}</Title>
+                    <Title>{t('Product ')} {t('Deatlies')}</Title>
                     <DataBook>{t('publisher')}: {theBook.publisher}</DataBook>
                     <DataBook>{t("language")}: {theBook.language}</DataBook>
                     <DataBook>{t("paper back")}: {theBook.paperback}</DataBook>

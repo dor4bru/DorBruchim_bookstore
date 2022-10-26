@@ -1,14 +1,15 @@
 #
-home exercise: Dor Bruchim
+Home exercise: Dor Bruchim
 
 ###
 install instructions
 
 ###
-git clone
+git clone https://github.com/dor4bru/DorBruchim_bookstore.git or 
+git@github.com:dor4bru/DorBruchim_bookstore.git
 
 ###
-cd dor-bruchim-bookstore
+cd DorBruchim_bookstore
 
 ###
 npm install

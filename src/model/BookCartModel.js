@@ -42,14 +42,13 @@ class BookCartModel {
 
         if (instance.theBookCart[id].count > 1) {
             instance.theBookCart[id].count--;
+            //set the total price
+            instance.theBookCart[id].totalPrice = instance.theBookCart[id].count * instance.theBookCart[id].data.price;
         } else if (instance.theBookCart[id].count === 1) {
             delete instance.theBookCart[id];
         }
-        //set the total price
-        instance.theBookCart[id].totalPrice = instance.theBookCart[id].count * instance.theBookCart[id].data.price;
         localStorage.setItem(BookCartModel.BOOK_CART_KEY, JSON.stringify(instance.theBookCart));
         instance.theBookCart = instance.getBooksFromCart();
-        debugger
         return instance.theBookCart;
     }
 

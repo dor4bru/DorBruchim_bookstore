@@ -38,7 +38,8 @@ function BooksList() {
             <NavLink to="/Cart">
                 <CounterCart count={cartBooksCount}></CounterCart>
             </NavLink>
-            <StoreName>{storeName} Store</StoreName>
+            
+            <StoreName>{storeName}</StoreName>
             <DivBookList>
                 {Object.keys(storeBooks).map(bookId => {
                     const book = storeBooks[bookId];

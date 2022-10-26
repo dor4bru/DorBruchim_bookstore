@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import CounterCart from '../components/CounterCart';
 import Navbar from '../components/Navbar';
 import CartTable from '../components/CartTable';
@@ -15,7 +16,7 @@ const columns = [
 ]
 
 function Cart() {
-
+    const {t} = useTranslation()
     const { getBookCart, getTotalPrice, deleteBookFromCart, getTotalBookCount } = BookCartModel;
 
     let [cartBooks, setCartBooks] = useState(getBookCart());
@@ -31,7 +32,7 @@ function Cart() {
             <CartTable data={cartBooks} chargeAmount={getTotalPrice()} columns={columns} onDeleteBook={deleteBook} />
             <NavLink to='/FinalizeOrder'>
                 <ButtonDiv>
-                    <Button>Next</Button>
+                    <Button>{t('Next')}</Button>
                 </ButtonDiv>
             </NavLink>
         </Container>

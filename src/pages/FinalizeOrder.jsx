@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, NavLink } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import CounterCart from '../components/CounterCart';
 import Navbar from '../components/Navbar';
 import { postOrder } from '../api/Order'
@@ -8,6 +9,8 @@ import {Container, Form, Title, Input, FormDiv} from '../styles/finilaizeOrderSt
 import BookCartModel from '../model/BookCartModel'
 
 export default function FinalizeOrder() {
+    // for translate
+    const {t} = useTranslation()
 
     const { getBookCart, getTotalPrice, clearCart, getTotalBookCount } = BookCartModel;
     const booksData = getBookCart();
@@ -79,19 +82,22 @@ export default function FinalizeOrder() {
     return (
         <Container>
             <Navbar></Navbar>
+            {/* <CounterCart count={getTotalBookCount()}></CounterCart> */}
+            <NavLink to="/Cart">
             <CounterCart count={getTotalBookCount()}></CounterCart>
+            </NavLink>
             <FormDiv>
                 <Form onSubmit={(e) => { handelSubmit(e) }} >
-                    <Title>Finalize Order</Title>
-                    <Input type="text" required value={firstName} placeholder="first name" onChange={(e) => setFirstName(e.target.value) } ></Input>
+                    <Title>{t('Finalize')} {t('Order')}</Title>
+                    <Input type="text" required value={firstName} placeholder='first name' onChange={(e) => setFirstName(e.target.value) } ></Input>
                     <Input type="text" required value={lastName} placeholder="last name" onChange={(e) => setLastName(e.target.value) } ></Input><br />
                     <Input type="text" required value={address} placeholder="address" onChange={(e) => setAddress(e.target.value) }></Input><br />
                     <Input type="text" required value={phoneNumber} placeholder="phone number" onChange={(e) => setPhoneNumber(e.target.value) }></Input><br />
-                    <Input type="submit" value="Buy" style={{background:`#01befd`}}/>
+                    <Input type="submit" value={t('Buy')} style={{background:`#01befd`}}/>
                 </Form>
             </FormDiv>
             <div>
-                {isLoading && <h2>Loading...</h2>}
+                {isLoading && <h2>{t('Loading')}...</h2>}
             </div>
         </Container>
     )

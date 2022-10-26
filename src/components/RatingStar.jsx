@@ -19,11 +19,11 @@ function RatingStar({rating, max= 5}) {
     function drawStar(type, id) {
         switch(type) {
             case 1:
-                return <VscStarFull key={id}></VscStarFull>
+                return <VscStarFull key={id} style={{color: 'orange'}}></VscStarFull>
             case 0.5:
-                return <VscStarHalf key={id}></VscStarHalf>
+                return <VscStarHalf key={id}  style={{color: 'orange'}}></VscStarHalf>
             default:
-                return <VscStarEmpty key={id}></VscStarEmpty>
+                return <VscStarEmpty key={id}  style={{color: 'orange'}}></VscStarEmpty>
         }
     }
 

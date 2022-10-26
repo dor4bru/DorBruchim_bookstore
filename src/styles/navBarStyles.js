@@ -17,6 +17,7 @@ text-align: center;
 
 export const ButtonDiv = styled.div`
 position: absolute;
+display: grid;
 top:0;
 `
 

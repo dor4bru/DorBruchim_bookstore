@@ -19,7 +19,7 @@ const CartTable = ({ data, chargeAmount, columns, onDeleteBook }) => {
                         case 'name':
                             return (
                                 <Td key={index}>
-                                    <Title>{bookData[`${columnItem.value}`]}</Title>
+                                    <Title>{bookData.author} - {bookData[`${columnItem.value}`]}</Title>
                                     <Description>{bookData.description}</Description>
                                 </Td>
                             )

@@ -4,7 +4,6 @@ const url = 'https://logical-calf-89.hasura.app/api/rest/books/';
 // get book data
 export const getBookData = async (bookId) => {
     try {
-        console.log(url + bookId)
         const d = await axios.get(url + bookId)
         return d.data.books;
     } catch (error) {

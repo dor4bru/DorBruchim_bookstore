@@ -64,3 +64,5 @@ export const Price = styled.div`
     text-align: center;
     padding: 1%;
     `
+
+export const DivRatingAndStar = styled.div``

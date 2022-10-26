@@ -3,9 +3,8 @@ import { NavLink, useLocation } from 'react-router-dom';
 import BookStoresModel from '../model/BookStoresModel'
 import Book from '../components/Book';
 import Navbar from '../components/Navbar';
-import {Container, DivBookList} from '../styles/bookListStyles'
+import {Container, DivBookList, StoreName} from '../styles/bookListStyles'
 import CounterCart from '../components/CounterCart';
-
 import BookCartModel from '../model/BookCartModel'
 
 function BooksList() {
@@ -39,7 +38,7 @@ function BooksList() {
             <NavLink to="/Cart">
                 <CounterCart count={cartBooksCount}></CounterCart>
             </NavLink>
-            <h3>{storeName} Store</h3>
+            <StoreName>{storeName} Store</StoreName>
             <DivBookList>
                 {Object.keys(storeBooks).map(bookId => {
                     const book = storeBooks[bookId];

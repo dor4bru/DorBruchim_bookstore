@@ -5,10 +5,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShoppingCart, faEuro } from "@fortawesome/free-solid-svg-icons"
 import { Container, ListBook, Button, ImgForBooks, Info, NameBook, DataBook, DivForButton, CartDiv } from '../styles/bookStyle'
 
-function Book({ id, name, description, author, price, addBook }) {
+function Book({ id, name, description, author, price, stars, ratings, publisher, language, paperback ,addBook }) {
 
     const navigate = useNavigate();
-    const theBook = { id, name, description, author, price };
+    const theBook = { id, name, description, author, price, stars, ratings, publisher, language, paperback };
 
     function navigateToProduct() {
         navigate('/Product',{state: {theBook}});

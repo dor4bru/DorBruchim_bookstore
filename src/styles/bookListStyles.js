@@ -9,3 +9,6 @@ padding: 1%;
 justify-content: space-between;`
 
 export const ErrorDiv = styled.div``
+
+export const StoreName = styled.h3`
+text-align: center;`

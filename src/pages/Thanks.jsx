@@ -12,7 +12,7 @@ const Thanks = () => {
             <Navbar/>
             <ThanksDiv>
                 <Title>Congrats, {thanksData.firstName} {thanksData.lastName}</Title>
-                <Order>Your order ID is {thanksData.orderId}</Order>
+                <Order>Your order ID is: {thanksData.orderId}</Order>
                 <GoodBye>BookStore Bookshop will hope to see you again</GoodBye>
                 <NavLink to='/' >
                     <ButtonDiv>

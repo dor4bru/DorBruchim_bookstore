@@ -1,5 +1,5 @@
 #
-home exrecise: Dor Bruchim
+home exercise: Dor Bruchim
 
 ###
 install instructions

@@ -8,6 +8,7 @@ import { Container, Button, ButtonDiv } from '../styles/cartStyles';
 
 import BookCartModel from '../model/BookCartModel'
 
+// columns for table
 const columns = [
     { heading: 'Name', value: 'name' },
     { heading: 'Quantity', value: 'quantity' },
@@ -21,6 +22,7 @@ function Cart() {
 
     let [cartBooks, setCartBooks] = useState(getBookCart());
 
+    // delete book
     function deleteBook(id) {
         setCartBooks(deleteBookFromCart(id));
     }

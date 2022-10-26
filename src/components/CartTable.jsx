@@ -1,5 +1,5 @@
 import React from 'react'
-import {CartTableStyle, Td, Tr, Title, Description, TBody, Th, THead} from '../styles/tableStyles'
+import { CartTableStyle, Td, Tr, Title, Description, TBody, Th, THead } from '../styles/tableStyles'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashCan, faEuro } from "@fortawesome/free-solid-svg-icons"
 
@@ -9,6 +9,7 @@ const CartTable = ({ data, chargeAmount, columns, onDeleteBook }) => {
         return (<Th>{name}</Th>)
     }
 
+    // create table row
     const TableRow = ({ item, columns }) => {
         const bookData = item.data;
         return (
@@ -32,8 +33,8 @@ const CartTable = ({ data, chargeAmount, columns, onDeleteBook }) => {
                         case 'icon':
                             return <Td key={index}>
                                 <FontAwesomeIcon icon={faTrashCan}
-                                style={{ color: "red", cursor: "pointer" }}
-                                onClick={() => onDeleteBook(bookData.id)}></FontAwesomeIcon></Td>
+                                    style={{ color: "red", cursor: "pointer" }}
+                                    onClick={() => onDeleteBook(bookData.id)}></FontAwesomeIcon></Td>
 
                         case 'quantity':
                             return <Td key={index}>{item.count}</Td>
@@ -53,7 +54,7 @@ const CartTable = ({ data, chargeAmount, columns, onDeleteBook }) => {
                 </Tr>
             </THead>
             <TBody>
-                {Object.keys(data).map((bookId, index) => <TableRow item={data[bookId]} columns={columns} key={index}/>)}
+                {Object.keys(data).map((bookId, index) => <TableRow item={data[bookId]} columns={columns} key={index} />)}
                 <Tr>
                     <Td></Td>
                     <Td></Td>

@@ -14,6 +14,7 @@ import RatingStar from "../components/RatingStar"
 import CounterCart from '../components/CounterCart';
 import BookCartModel from '../model/BookCartModel'
 
+// product
 function Product() {
     const {t} = useTranslation()
     const { getTotalBookCount, addBookToCart } = BookCartModel;
@@ -21,6 +22,7 @@ function Product() {
     const {theBook} = location.state;
     let [cartBooksCount, setCartBooksCount] = useState(getTotalBookCount());
 
+    // add the book to the cart
     function addBook(theBook) {
         addBookToCart(theBook);
         setCartBooksCount(getTotalBookCount());

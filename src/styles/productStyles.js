@@ -1,8 +1,6 @@
 import styled from "styled-components"
 
-export const Container = styled.div`
-
-`
+export const Container = styled.div``
 
 export const ListProduct = styled.div`
 display:grid;
@@ -17,14 +15,14 @@ max-width: 65%;
 `
 
 export const NameBook = styled.h1`
-    text-align: center;
-    flex-direction: column;`
+text-align: center;
+flex-direction: column;`
 
 export const NameAuthor = styled.h3`
-    font-size: medium;
-    text-align: center;
-    flex-direction: column;
-    mragin: 1px`
+font-size: medium;
+text-align: center;
+flex-direction: column;
+mragin: 1px`
 
 export const Description = styled.p`
 text-align: center;
@@ -45,24 +43,22 @@ text-align: center;
 export const DataBook = styled.div``
 
 export const Button = styled.button`
-    cursor: pointer;
-    background-color: #33b5e5;
-    text-align: center;
-    margin-button: 3%;
-    cursor: pointer;`
+cursor: pointer;
+background-color: #33b5e5;
+text-align: center;
+margin-button: 3%;
+cursor: pointer;`
 
 export const AddCart = styled.div`
-    border-style: solid;
-    border-color: black;
-    margin-left: 18%;
-    max-width: 60%;
-    margin-top: 1%;
-    `
+border-style: solid;
+border-color: black;
+margin-left: 18%;
+max-width: 60%;
+margin-top: 1%;`
 
 export const Price = styled.div`
-    background-color: #fefeed
-    text-align: center;
-    padding: 1%;
-    `
+background-color: #fefeed
+text-align: center;
+padding: 1%;`
 
 export const DivRatingAndStar = styled.div``

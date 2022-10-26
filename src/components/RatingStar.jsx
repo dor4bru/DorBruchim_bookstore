@@ -16,6 +16,7 @@ function RatingStar({rating, max= 5}) {
     const emptyStars = Array(numOfEmptyStars).fill(0);
     const allStars = fullStars.concat(halfStar, emptyStars);
 
+    // draw the star by type
     function drawStar(type, id) {
         switch(type) {
             case 1:

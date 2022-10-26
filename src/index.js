@@ -6,8 +6,8 @@ import i18n from "./data/translateText";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-<BrowserRouter>
-    <App />
-</BrowserRouter>,
+    <BrowserRouter>
+        <App />
+    </BrowserRouter>,
 );
 

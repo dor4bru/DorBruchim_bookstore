@@ -3,19 +3,21 @@ import { NavLink, useLocation } from 'react-router-dom';
 import BookStoresModel from '../model/BookStoresModel'
 import Book from '../components/Book';
 import Navbar from '../components/Navbar';
-import {Container, DivBookList, StoreName} from '../styles/bookListStyles'
+import { Container, DivBookList, StoreName } from '../styles/bookListStyles'
 import CounterCart from '../components/CounterCart';
 import BookCartModel from '../model/BookCartModel'
 
+// book list
 function BooksList() {
 
+    // get from book cart model
     const { getTotalBookCount, addBookToCart } = BookCartModel;
-
     let [storeBooks, setStoreBooks] = useState([]);
     let [cartBooksCount, setCartBooksCount] = useState(getTotalBookCount());
     const location = useLocation();
-    const {storeName, storeId} = location.state;
+    const { storeName, storeId } = location.state;
 
+    // add book to cart
     function addBook(theBook) {
         addBookToCart(theBook);
         setCartBooksCount(getTotalBookCount());
@@ -38,7 +40,6 @@ function BooksList() {
             <NavLink to="/Cart">
                 <CounterCart count={cartBooksCount}></CounterCart>
             </NavLink>
-            
             <StoreName>{storeName}</StoreName>
             <DivBookList>
                 {Object.keys(storeBooks).map(bookId => {

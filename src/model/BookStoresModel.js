@@ -25,6 +25,7 @@ class BookStoresModel {
         return this;
     }
 
+    // create store
     async createStores() {
         const stores = await getStoresData();
         stores.forEach((store) => {
@@ -60,6 +61,7 @@ class BookStoresModel {
         return instance.books;
     }
 
+    // get books data from api or from memory by check the time
     async getBooksData(storeId = null) {
         const now = (Date.now() / 1000);
         const fetchTime = localStorage.getItem(BookStoresModel.BOOKS_FETCH_TIME_SEC);
@@ -73,6 +75,7 @@ class BookStoresModel {
         return storeId? result[storeId] : result;
     }
 
+    // get stores
     async getStores(storeId = null) {
         const now = (Date.now() / 1000);
         const fetchTime = localStorage.getItem(BookStoresModel.STORE_FETCH_TIME_SEC);

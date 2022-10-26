@@ -1,6 +1,7 @@
 import { initReactI18next } from "react-i18next";
 import i18n from "i18next";
 
+// translate text
 i18n.use(initReactI18next).init({
   lng: "",
   resources: {

@@ -5,6 +5,7 @@ import logoImg from '../img/logo.png';
 import { Container, Logo, LogoDiv, ButtonDiv } from '../styles/navBarStyles';
 import Language from '../components/Language'
 
+//nav bar
 const Navbar = () => {
   return (
     <Container>

@@ -11,6 +11,7 @@ import Thanks from './pages/Thanks'
 // main app
 function App() {
     return (
+        // routes pages
         <Routes>
             <Route path="/" element={<Home />}></Route>
             <Route path="/Books" element={<BooksList />}></Route>

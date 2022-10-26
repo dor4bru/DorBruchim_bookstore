@@ -1,5 +1,6 @@
 let instance;
 
+// book cart class
 class BookCartModel {
 
     // For stores
@@ -13,14 +14,17 @@ class BookCartModel {
         instance.theBookCart = instance.getBooksFromCart();
     }
 
+    // get instance
     getInstance() {
         return this;
     }
 
+    // get books from cart
     getBooksFromCart() {
         return JSON.parse(localStorage.getItem(BookCartModel.BOOK_CART_KEY) || "{}");
     }
 
+    // add the book to the cart
     addBookToCart(book) {
         if (instance.theBookCart[book.id]) {
             instance.theBookCart[book.id].count += 1;
@@ -33,10 +37,10 @@ class BookCartModel {
             }
         }
         localStorage.setItem(BookCartModel.BOOK_CART_KEY, JSON.stringify(instance.theBookCart));
-        console.log("Final Num of books in cart: " + instance.getTotalBookCount());
         return instance.theBookCart;
     }
 
+    // delete book from cart and calculate the price and total price again
     deleteBookFromCart(id) {
         if(!instance.theBookCart[id]) return;
 
@@ -52,6 +56,7 @@ class BookCartModel {
         return instance.theBookCart;
     }
 
+    // get total book count
     getTotalBookCount() {
         return Object.keys(instance.theBookCart).reduce((prev, bookId) => {
             return instance.theBookCart[bookId].count + prev;
@@ -59,17 +64,20 @@ class BookCartModel {
 
     }
 
+    // get total price
     getTotalPrice() {
         return Object.keys(instance.theBookCart).reduce((prev, bookId) => {
             return instance.theBookCart[bookId].totalPrice + prev;
         }, 0);
     }
 
+    // clear cart
     clearCart() {
         localStorage.setItem(BookCartModel.BOOK_CART_KEY, "{}");
         instance.theBookCart = {};
     }
 
+    // print table book
     getPrintableBooks() {
         const printList = {};
         instance.theBookCart = instance.getBooksFromCart();
@@ -80,6 +88,7 @@ class BookCartModel {
         return printList;
     }
 
+    // get book cart
     getBookCart() {
         return instance.theBookCart;
     }

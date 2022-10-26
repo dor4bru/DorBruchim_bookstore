@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
 export const CartTableStyle = styled.table`
-    display: grid
-    border-collapse: collapse;
-    max-width: 900px;
-    width: 100%;
-    margin: 2rem auto;
+display: grid
+border-collapse: collapse;
+max-width: 900px;
+width: 100%;
+margin: 2rem auto;
 `
 
 export const Th = styled.th`

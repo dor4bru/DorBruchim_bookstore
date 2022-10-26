@@ -9,7 +9,7 @@ const storeImages = require('../data/StoreImageMap.json');
 
 // Home page
 function Home() {
-
+    
     let [storesData, setStoresData] = useState([]);
 
     useEffect(() => {
